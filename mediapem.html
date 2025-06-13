@@ -1,0 +1,684 @@
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modul Interaktif: Teks Iklan</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Nunito:wght@400;600;700;800&display=swap');
+        
+        body {
+            font-family: 'Nunito', sans-serif;
+            background-color: #f0f9ff;
+        }
+        
+        .slide {
+            display: none;
+            animation: fadeIn 0.5s;
+        }
+        
+        @keyframes fadeIn {
+            from { opacity: 0; }
+            to { opacity: 1; }
+        }
+        
+        .active-slide {
+            display: block;
+        }
+        
+        .btn {
+            transition: all 0.3s ease;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        }
+        
+        .progress-bar {
+            transition: width 0.5s ease;
+        }
+        
+        .card {
+            transition: all 0.3s ease;
+        }
+        
+        .card:hover {
+            transform: translateY(-5px);
+        }
+        
+        .option:hover {
+            background-color: #e0f2fe;
+        }
+        
+        .confetti {
+            position: absolute;
+            width: 10px;
+            height: 10px;
+            background-color: #f00;
+            animation: confetti-fall 3s ease-in-out infinite;
+        }
+        
+        @keyframes confetti-fall {
+            0% { transform: translateY(-100px) rotate(0deg); opacity: 1; }
+            100% { transform: translateY(500px) rotate(360deg); opacity: 0; }
+        }
+    </style>
+</head>
+<body class="min-h-screen">
+    <div class="container mx-auto px-4 py-8 max-w-4xl">
+        <!-- Header -->
+        <header class="bg-gradient-to-r from-blue-500 to-purple-600 rounded-xl shadow-lg p-6 mb-8">
+            <h1 class="text-3xl md:text-4xl font-bold text-white text-center">Modul Interaktif: Teks Iklan</h1>
+            <p class="text-blue-100 text-center mt-2">Untuk Siswa SMP</p>
+        </header>
+        
+        <!-- Progress Bar -->
+        <div class="w-full bg-gray-200 rounded-full h-4 mb-8">
+            <div id="progress-bar" class="bg-gradient-to-r from-green-400 to-blue-500 h-4 rounded-full progress-bar" style="width: 0%"></div>
+        </div>
+        
+        <!-- Content Container -->
+        <div id="content-container" class="bg-white rounded-xl shadow-lg p-6 mb-8">
+            
+            <!-- Slide 1: Intro -->
+            <div id="slide-1" class="slide active-slide">
+                <div class="flex flex-col items-center">
+                    <div class="w-24 h-24 bg-blue-100 rounded-full flex items-center justify-center mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-12 w-12 text-blue-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M11 5.882V19.24a1.76 1.76 0 01-3.417.592l-2.147-6.15M18 13a3 3 0 100-6M5.436 13.683A4.001 4.001 0 017 6h1.832c4.1 0 7.625-1.234 9.168-3v14c-1.543-1.766-5.067-3-9.168-3H7a3.988 3.988 0 01-1.564-.317z" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-700 mb-4 text-center">Selamat Datang di Modul Teks Iklan!</h2>
+                    <p class="text-gray-700 mb-6 text-center">Hai teman-teman! Siap untuk belajar tentang teks iklan yang seru dan menarik? Mari kita mulai petualangan belajar kita!</p>
+                    <button onclick="nextSlide()" class="btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-3 px-6 rounded-full shadow-md">
+                        Mulai Belajar
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Slide 2: Materi -->
+            <div id="slide-2" class="slide">
+                <h2 class="text-2xl font-bold text-blue-700 mb-4">Apa itu Teks Iklan?</h2>
+                
+                <div class="bg-blue-50 p-4 rounded-lg mb-6">
+                    <p class="text-gray-700 mb-4">Teks iklan adalah bentuk komunikasi tertulis atau visual yang bertujuan untuk:</p>
+                    <ul class="list-disc pl-6 mb-4 text-gray-700">
+                        <li class="mb-2">Menyampaikan informasi tentang produk atau jasa</li>
+                        <li class="mb-2">Membujuk pembaca untuk tertarik atau membeli</li>
+                        <li class="mb-2">Mengingatkan tentang keberadaan produk</li>
+                        <li class="mb-2">Memperkuat citra merek</li>
+                    </ul>
+                </div>
+                
+                <h3 class="text-xl font-bold text-blue-600 mb-3">Ciri-Ciri Teks Iklan:</h3>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-4 mb-6">
+                    <div class="bg-white border border-blue-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2">
+                                <span class="text-blue-600 font-bold">1</span>
+                            </div>
+                            <h4 class="font-bold text-gray-800">Singkat dan Padat</h4>
+                        </div>
+                        <p class="text-gray-600">Menggunakan bahasa yang efektif dan tidak bertele-tele</p>
+                    </div>
+                    
+                    <div class="bg-white border border-blue-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2">
+                                <span class="text-blue-600 font-bold">2</span>
+                            </div>
+                            <h4 class="font-bold text-gray-800">Persuasif</h4>
+                        </div>
+                        <p class="text-gray-600">Mengajak dan membujuk pembaca untuk melakukan sesuatu</p>
+                    </div>
+                    
+                    <div class="bg-white border border-blue-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2">
+                                <span class="text-blue-600 font-bold">3</span>
+                            </div>
+                            <h4 class="font-bold text-gray-800">Menarik Perhatian</h4>
+                        </div>
+                        <p class="text-gray-600">Menggunakan kata-kata atau gambar yang eye-catching</p>
+                    </div>
+                    
+                    <div class="bg-white border border-blue-200 rounded-lg p-4 shadow-sm">
+                        <div class="flex items-center mb-2">
+                            <div class="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center mr-2">
+                                <span class="text-blue-600 font-bold">4</span>
+                            </div>
+                            <h4 class="font-bold text-gray-800">Informatif</h4>
+                        </div>
+                        <p class="text-gray-600">Memberikan informasi penting tentang produk/jasa</p>
+                    </div>
+                </div>
+                
+                <h3 class="text-xl font-bold text-blue-600 mb-3">Struktur Teks Iklan:</h3>
+                <div class="bg-gradient-to-r from-blue-50 to-purple-50 p-4 rounded-lg mb-6">
+                    <ol class="list-decimal pl-6 text-gray-700">
+                        <li class="mb-2"><span class="font-bold text-blue-600">Headline/Judul:</span> Menarik perhatian pembaca</li>
+                        <li class="mb-2"><span class="font-bold text-blue-600">Nama Produk/Jasa:</span> Identifikasi jelas apa yang ditawarkan</li>
+                        <li class="mb-2"><span class="font-bold text-blue-600">Deskripsi/Body:</span> Manfaat dan keunggulan produk</li>
+                        <li class="mb-2"><span class="font-bold text-blue-600">Call to Action:</span> Ajakan untuk bertindak ("Beli Sekarang!", "Hubungi Kami")</li>
+                    </ol>
+                </div>
+                
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full shadow-md">
+                        Kembali
+                    </button>
+                    <button onclick="nextSlide()" class="btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-md">
+                        Lanjut
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Slide 3: Contoh Teks Iklan -->
+            <div id="slide-3" class="slide">
+                <h2 class="text-2xl font-bold text-blue-700 mb-4">Contoh Teks Iklan</h2>
+                
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <!-- Contoh Iklan 1 -->
+                    <div class="card bg-gradient-to-br from-yellow-50 to-orange-50 border border-orange-200 rounded-xl p-5 shadow-md">
+                        <div class="bg-orange-500 text-white text-center py-3 rounded-lg mb-4">
+                            <h3 class="text-xl font-bold">JUSS SEGAR</h3>
+                            <p class="text-sm text-orange-100">100% Buah Asli</p>
+                        </div>
+                        
+                        <div class="mb-4 flex justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-orange-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 8v13m0-13V6a4 4 0 00-4-4H8.8a4 4 0 00-3.6 2.3L4 7.3M12 8h7a2 2 0 012 2v9a2 2 0 01-2 2H5a2 2 0 01-2-2V10a2 2 0 012-2h7z" />
+                            </svg>
+                        </div>
+                        
+                        <p class="text-center text-gray-700 mb-4">Rasakan kesegaran alami dalam setiap tegukan! Dibuat dari buah-buahan pilihan tanpa bahan pengawet.</p>
+                        
+                        <ul class="mb-4 text-gray-700">
+                            <li class="flex items-center mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                Kaya vitamin C
+                            </li>
+                            <li class="flex items-center mb-2">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                Tanpa gula tambahan
+                            </li>
+                            <li class="flex items-center">
+                                <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                                    <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                                </svg>
+                                Kemasan ramah lingkungan
+                            </li>
+                        </ul>
+                        
+                        <div class="text-center">
+                            <button class="bg-orange-500 hover:bg-orange-600 text-white font-bold py-2 px-4 rounded-full">
+                                Beli Sekarang!
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <!-- Contoh Iklan 2 -->
+                    <div class="card bg-gradient-to-br from-blue-50 to-green-50 border border-blue-200 rounded-xl p-5 shadow-md">
+                        <div class="bg-blue-600 text-white text-center py-3 rounded-lg mb-4">
+                            <h3 class="text-xl font-bold">HEMAT AIR</h3>
+                            <p class="text-sm text-blue-100">Kampanye Peduli Lingkungan</p>
+                        </div>
+                        
+                        <div class="mb-4 flex justify-center">
+                            <svg xmlns="http://www.w3.org/2000/svg" class="h-20 w-20 text-blue-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19.428 15.428a2 2 0 00-1.022-.547l-2.387-.477a6 6 0 00-3.86.517l-.318.158a6 6 0 01-3.86.517L6.05 15.21a2 2 0 00-1.806.547M8 4h8l-1 1v5.172a2 2 0 00.586 1.414l5 5c1.26 1.26.367 3.414-1.415 3.414H4.828c-1.782 0-2.674-2.154-1.414-3.414l5-5A2 2 0 009 10.172V5L8 4z" />
+                            </svg>
+                        </div>
+                        
+                        <p class="text-center text-gray-700 mb-4">Air adalah sumber kehidupan. Setiap tetes yang kita hemat hari ini adalah investasi untuk masa depan bumi kita.</p>
+                        
+                        <div class="bg-white rounded-lg p-3 mb-4">
+                            <p class="text-gray-700 text-center italic">"Satu tetes untuk hari ini, lautan untuk masa depan."</p>
+                        </div>
+                        
+                        <div class="text-center">
+                            <p class="text-gray-700 mb-2">Ayo bergabung dalam gerakan hemat air!</p>
+                            <button class="bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full">
+                                Pelajari Caranya
+                            </button>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="bg-yellow-50 border-l-4 border-yellow-400 p-4 mb-6">
+                    <div class="flex">
+                        <div class="flex-shrink-0">
+                            <svg class="h-5 w-5 text-yellow-400" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 20 20" fill="currentColor">
+                                <path fill-rule="evenodd" d="M18 10a8 8 0 11-16 0 8 8 0 0116 0zm-7-4a1 1 0 11-2 0 1 1 0 012 0zM9 9a1 1 0 000 2v3a1 1 0 001 1h1a1 1 0 100-2h-1V9z" clip-rule="evenodd" />
+                            </svg>
+                        </div>
+                        <div class="ml-3">
+                            <p class="text-sm text-yellow-700">
+                                <span class="font-bold">Perhatikan:</span> Kedua contoh iklan di atas memiliki struktur lengkap: judul menarik, deskripsi produk/kampanye, manfaat, dan ajakan bertindak (call to action).
+                            </p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full shadow-md">
+                        Kembali
+                    </button>
+                    <button onclick="nextSlide()" class="btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-md">
+                        Lanjut
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Slide 4: Pertanyaan Refleksi -->
+            <div id="slide-4" class="slide">
+                <h2 class="text-2xl font-bold text-blue-700 mb-4">Pertanyaan Refleksi</h2>
+                
+                <p class="text-gray-700 mb-6">Yuk, jawab pertanyaan-pertanyaan berikut untuk mengukur pemahamanmu tentang teks iklan!</p>
+                
+                <div class="space-y-6">
+                    <!-- Pertanyaan 1 -->
+                    <div class="bg-white border border-blue-200 rounded-lg p-5 shadow-sm">
+                        <h3 class="text-lg font-bold text-blue-600 mb-3">Pertanyaan 1:</h3>
+                        <p class="text-gray-700 mb-4">Menurutmu, mengapa iklan menggunakan bahasa yang singkat dan padat? Apa keuntungannya?</p>
+                        
+                        <textarea id="jawaban1" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="Tuliskan jawabanmu di sini..."></textarea>
+                        
+                        <div class="mt-3 hidden" id="feedback1">
+                            <p class="text-green-600 font-medium">Bagus! Bahasa yang singkat dan padat membantu pesan iklan lebih mudah diingat dan langsung ke inti pesan. Pembaca juga tidak perlu waktu lama untuk memahami pesannya.</p>
+                        </div>
+                        
+                        <button onclick="showFeedback(1)" class="mt-3 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">
+                            Cek Jawaban
+                        </button>
+                    </div>
+                    
+                    <!-- Pertanyaan 2 -->
+                    <div class="bg-white border border-blue-200 rounded-lg p-5 shadow-sm">
+                        <h3 class="text-lg font-bold text-blue-600 mb-3">Pertanyaan 2:</h3>
+                        <p class="text-gray-700 mb-4">Dari dua contoh iklan yang telah kamu lihat, mana yang menurutmu lebih menarik? Jelaskan alasanmu!</p>
+                        
+                        <textarea id="jawaban2" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="Tuliskan jawabanmu di sini..."></textarea>
+                        
+                        <div class="mt-3 hidden" id="feedback2">
+                            <p class="text-green-600 font-medium">Jawaban yang bagus! Setiap orang bisa memiliki preferensi berbeda terhadap iklan. Yang penting adalah kamu bisa menjelaskan alasan mengapa iklan tersebut menarik bagimu.</p>
+                        </div>
+                        
+                        <button onclick="showFeedback(2)" class="mt-3 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">
+                            Cek Jawaban
+                        </button>
+                    </div>
+                    
+                    <!-- Pertanyaan 3 -->
+                    <div class="bg-white border border-blue-200 rounded-lg p-5 shadow-sm">
+                        <h3 class="text-lg font-bold text-blue-600 mb-3">Pertanyaan 3:</h3>
+                        <p class="text-gray-700 mb-4">Jika kamu diminta membuat iklan untuk kegiatan di sekolahmu, apa yang akan kamu promosikan dan bagaimana kamu akan membuatnya menarik?</p>
+                        
+                        <textarea id="jawaban3" class="w-full p-3 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500" rows="3" placeholder="Tuliskan jawabanmu di sini..."></textarea>
+                        
+                        <div class="mt-3 hidden" id="feedback3">
+                            <p class="text-green-600 font-medium">Kreatif sekali! Membuat iklan untuk kegiatan sekolah adalah cara yang bagus untuk menerapkan pengetahuanmu tentang teks iklan. Pastikan iklanmu memiliki judul menarik, deskripsi jelas, dan ajakan untuk berpartisipasi.</p>
+                        </div>
+                        
+                        <button onclick="showFeedback(3)" class="mt-3 bg-blue-500 hover:bg-blue-600 text-white font-medium py-2 px-4 rounded">
+                            Cek Jawaban
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between mt-6">
+                    <button onclick="prevSlide()" class="btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full shadow-md">
+                        Kembali
+                    </button>
+                    <button onclick="nextSlide()" class="btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-md">
+                        Lanjut ke Mini Game
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Slide 5: Mini Game -->
+            <div id="slide-5" class="slide">
+                <h2 class="text-2xl font-bold text-blue-700 mb-2">Mini Game: Tebak Jenis Iklan</h2>
+                <p class="text-gray-700 mb-6">Ayo uji pemahamanmu! Tentukan jenis iklan dari contoh-contoh berikut.</p>
+                
+                <div class="bg-gradient-to-r from-purple-50 to-pink-50 rounded-xl p-6 mb-6">
+                    <div id="game-container">
+                        <div id="question-container" class="mb-4">
+                            <h3 class="text-lg font-bold text-purple-700 mb-3" id="question-text">Pertanyaan 1/5</h3>
+                            <div class="bg-white rounded-lg p-4 shadow-sm mb-4" id="question-content">
+                                <!-- Konten pertanyaan akan diisi oleh JavaScript -->
+                            </div>
+                        </div>
+                        
+                        <div id="options-container" class="space-y-3 mb-6">
+                            <!-- Opsi jawaban akan diisi oleh JavaScript -->
+                        </div>
+                        
+                        <div id="feedback-container" class="hidden mb-4 p-4 rounded-lg">
+                            <!-- Feedback akan diisi oleh JavaScript -->
+                        </div>
+                        
+                        <div class="flex justify-between">
+                            <div>
+                                <span class="text-sm text-gray-600">Skor: <span id="score">0</span>/5</span>
+                            </div>
+                            <button id="next-question" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-md hidden">
+                                Pertanyaan Berikutnya
+                            </button>
+                        </div>
+                    </div>
+                    
+                    <div id="game-result" class="text-center hidden">
+                        <h3 class="text-xl font-bold text-purple-700 mb-3">Hasil Akhir</h3>
+                        <p class="text-gray-700 mb-3">Kamu mendapatkan skor: <span id="final-score" class="font-bold text-xl text-purple-700">0</span>/5</p>
+                        <div id="result-message" class="mb-4">
+                            <!-- Pesan hasil akan diisi oleh JavaScript -->
+                        </div>
+                        <button onclick="restartGame()" class="bg-purple-600 hover:bg-purple-700 text-white font-bold py-2 px-4 rounded-full shadow-md">
+                            Main Lagi
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="flex justify-between">
+                    <button onclick="prevSlide()" class="btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full shadow-md">
+                        Kembali
+                    </button>
+                    <button onclick="nextSlide()" class="btn bg-blue-600 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full shadow-md">
+                        Lanjut
+                    </button>
+                </div>
+            </div>
+            
+            <!-- Slide 6: Kesimpulan -->
+            <div id="slide-6" class="slide">
+                <div class="text-center mb-6">
+                    <div class="w-20 h-20 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-10 w-10 text-green-500" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7" />
+                        </svg>
+                    </div>
+                    <h2 class="text-2xl font-bold text-blue-700 mb-2">Selamat! Kamu Telah Menyelesaikan Modul</h2>
+                    <p class="text-gray-700 mb-6">Mari kita rangkum apa yang telah kita pelajari tentang teks iklan.</p>
+                </div>
+                
+                <div class="bg-gradient-to-r from-blue-50 to-green-50 rounded-xl p-6 mb-6">
+                    <h3 class="text-xl font-bold text-blue-700 mb-4">Rangkuman Materi</h3>
+                    
+                    <div class="space-y-4 text-gray-700">
+                        <p>✅ <span class="font-semibold">Teks iklan</span> adalah bentuk komunikasi untuk menyampaikan informasi dan membujuk pembaca.</p>
+                        
+                        <p>✅ <span class="font-semibold">Ciri-ciri teks iklan:</span> singkat, persuasif, menarik, dan informatif.</p>
+                        
+                        <p>✅ <span class="font-semibold">Struktur teks iklan:</span> judul, nama produk, deskripsi, dan call to action.</p>
+                        
+                        <p>✅ <span class="font-semibold">Jenis iklan:</span> iklan niaga (komersial) dan iklan layanan masyarakat.</p>
+                    </div>
+                </div>
+                
+                <div class="bg-gradient-to-r from-yellow-50 to-orange-50 rounded-xl p-6 mb-6">
+                    <h3 class="text-xl font-bold text-orange-600 mb-3">Catatan Motivasi</h3>
+                    
+                    <div class="bg-white rounded-lg p-4 shadow-sm">
+                        <p class="text-gray-700 italic text-center">"Kreativitas adalah kecerdasan yang bersenang-senang. Gunakan pengetahuanmu tentang teks iklan untuk menciptakan pesan-pesan yang positif dan menginspirasi orang lain!"</p>
+                    </div>
+                    
+                    <div class="mt-4 text-center">
+                        <p class="text-gray-700">Ingat, kemampuan membuat dan memahami iklan adalah keterampilan penting di era digital. Teruslah berlatih dan kembangkan kreativitasmu!</p>
+                    </div>
+                </div>
+                
+                <div class="text-center">
+                    <button onclick="prevSlide()" class="btn bg-gray-500 hover:bg-gray-600 text-white font-bold py-2 px-4 rounded-full shadow-md mr-2">
+                        Kembali
+                    </button>
+                    <button onclick="restartModule()" class="btn bg-green-600 hover:bg-green-700 text-white font-bold py-2 px-4 rounded-full shadow-md">
+                        Selesai & Mulai Ulang
+                    </button>
+                </div>
+            </div>
+            
+        </div>
+    </div>
+    
+    <script>
+        // Data untuk game
+        const gameQuestions = [
+            {
+                question: '"Beli satu gratis satu! Promo spesial hanya minggu ini untuk semua produk perawatan wajah. Kunjungi toko kami sekarang!"',
+                options: ["Iklan Niaga", "Iklan Layanan Masyarakat", "Iklan Pengumuman", "Iklan Politik"],
+                correct: 0,
+                explanation: "Ini adalah iklan niaga karena mempromosikan produk komersial dengan tujuan meningkatkan penjualan."
+            },
+            {
+                question: '"Matikan lampu saat tidak digunakan. Hemat energi untuk masa depan bumi yang lebih baik. Mari jaga planet kita bersama-sama."',
+                options: ["Iklan Niaga", "Iklan Layanan Masyarakat", "Iklan Pengumuman", "Iklan Politik"],
+                correct: 1,
+                explanation: "Ini adalah iklan layanan masyarakat karena bertujuan mengedukasi masyarakat tentang pentingnya menghemat energi."
+            },
+            {
+                question: '"Sepatu SPRINT, pilihan para juara! Dengan teknologi terbaru yang membuat larimu lebih cepat dan nyaman. Tersedia di toko olahraga terdekat."',
+                options: ["Iklan Niaga", "Iklan Layanan Masyarakat", "Iklan Pengumuman", "Iklan Politik"],
+                correct: 0,
+                explanation: "Ini adalah iklan niaga karena mempromosikan produk sepatu dengan merek tertentu untuk tujuan komersial."
+            },
+            {
+                question: '"Diumumkan kepada seluruh warga bahwa akan diadakan kerja bakti pada hari Minggu, 10 September 2023. Dimohon partisipasinya."',
+                options: ["Iklan Niaga", "Iklan Layanan Masyarakat", "Iklan Pengumuman", "Iklan Politik"],
+                correct: 2,
+                explanation: "Ini adalah iklan pengumuman karena memberikan informasi tentang kegiatan yang akan dilaksanakan."
+            },
+            {
+                question: '"Jangan buang sampah sembarangan! Sampah yang tidak dikelola dengan baik dapat menyebabkan banjir dan penyakit. Mari jaga kebersihan lingkungan kita."',
+                options: ["Iklan Niaga", "Iklan Layanan Masyarakat", "Iklan Pengumuman", "Iklan Politik"],
+                correct: 1,
+                explanation: "Ini adalah iklan layanan masyarakat karena bertujuan mengedukasi masyarakat tentang pentingnya membuang sampah pada tempatnya."
+            }
+        ];
+        
+        let currentSlide = 1;
+        let currentQuestion = 0;
+        let score = 0;
+        let totalSlides = 6;
+        
+        // Fungsi untuk navigasi slide
+        function showSlide(slideNumber) {
+            // Sembunyikan semua slide
+            document.querySelectorAll('.slide').forEach(slide => {
+                slide.classList.remove('active-slide');
+            });
+            
+            // Tampilkan slide yang dipilih
+            document.getElementById(`slide-${slideNumber}`).classList.add('active-slide');
+            
+            // Update progress bar
+            const progressPercentage = ((slideNumber - 1) / (totalSlides - 1)) * 100;
+            document.getElementById('progress-bar').style.width = `${progressPercentage}%`;
+            
+            // Jika slide game, inisialisasi game
+            if (slideNumber === 5 && currentQuestion === 0) {
+                initGame();
+            }
+            
+            currentSlide = slideNumber;
+        }
+        
+        function nextSlide() {
+            if (currentSlide < totalSlides) {
+                showSlide(currentSlide + 1);
+            }
+        }
+        
+        function prevSlide() {
+            if (currentSlide > 1) {
+                showSlide(currentSlide - 1);
+            }
+        }
+        
+        // Fungsi untuk pertanyaan refleksi
+        function showFeedback(questionNumber) {
+            const feedbackElement = document.getElementById(`feedback${questionNumber}`);
+            feedbackElement.classList.remove('hidden');
+        }
+        
+        // Fungsi untuk game
+        function initGame() {
+            currentQuestion = 0;
+            score = 0;
+            document.getElementById('score').textContent = score;
+            document.getElementById('game-result').classList.add('hidden');
+            document.getElementById('game-container').classList.remove('hidden');
+            loadQuestion();
+        }
+        
+        function loadQuestion() {
+            const question = gameQuestions[currentQuestion];
+            document.getElementById('question-text').textContent = `Pertanyaan ${currentQuestion + 1}/5`;
+            document.getElementById('question-content').textContent = question.question;
+            
+            const optionsContainer = document.getElementById('options-container');
+            optionsContainer.innerHTML = '';
+            
+            question.options.forEach((option, index) => {
+                const optionElement = document.createElement('div');
+                optionElement.className = 'option bg-white border border-purple-200 rounded-lg p-3 cursor-pointer hover:bg-purple-50 transition-colors';
+                optionElement.innerHTML = `
+                    <div class="flex items-center">
+                        <div class="w-6 h-6 border-2 border-purple-400 rounded-full flex items-center justify-center mr-3">
+                            <span class="text-sm font-bold text-purple-600">${String.fromCharCode(65 + index)}</span>
+                        </div>
+                        <span>${option}</span>
+                    </div>
+                `;
+                optionElement.addEventListener('click', () => checkAnswer(index));
+                optionsContainer.appendChild(optionElement);
+            });
+            
+            document.getElementById('feedback-container').classList.add('hidden');
+            document.getElementById('next-question').classList.add('hidden');
+        }
+        
+        function checkAnswer(selectedIndex) {
+            const question = gameQuestions[currentQuestion];
+            const feedbackContainer = document.getElementById('feedback-container');
+            
+            if (selectedIndex === question.correct) {
+                feedbackContainer.className = 'mb-4 p-4 rounded-lg bg-green-100 border border-green-300';
+                feedbackContainer.innerHTML = `
+                    <div class="flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-green-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zm3.707-9.293a1 1 0 00-1.414-1.414L9 10.586 7.707 9.293a1 1 0 00-1.414 1.414l2 2a1 1 0 001.414 0l4-4z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="text-green-700">Benar! ${question.explanation}</span>
+                    </div>
+                `;
+                score++;
+                document.getElementById('score').textContent = score;
+            } else {
+                feedbackContainer.className = 'mb-4 p-4 rounded-lg bg-red-100 border border-red-300';
+                feedbackContainer.innerHTML = `
+                    <div class="flex">
+                        <svg xmlns="http://www.w3.org/2000/svg" class="h-5 w-5 text-red-500 mr-2" viewBox="0 0 20 20" fill="currentColor">
+                            <path fill-rule="evenodd" d="M10 18a8 8 0 100-16 8 8 0 000 16zM8.707 7.293a1 1 0 00-1.414 1.414L8.586 10l-1.293 1.293a1 1 0 101.414 1.414L10 11.414l1.293 1.293a1 1 0 001.414-1.414L11.414 10l1.293-1.293a1 1 0 00-1.414-1.414L10 8.586 8.707 7.293z" clip-rule="evenodd" />
+                        </svg>
+                        <span class="text-red-700">Kurang tepat. Jawaban yang benar adalah ${question.options[question.correct]}. ${question.explanation}</span>
+                    </div>
+                `;
+            }
+            
+            feedbackContainer.classList.remove('hidden');
+            
+            // Disable all options
+            document.querySelectorAll('.option').forEach(option => {
+                option.style.pointerEvents = 'none';
+                option.classList.remove('hover:bg-purple-50');
+            });
+            
+            // Show next question button if not the last question
+            if (currentQuestion < gameQuestions.length - 1) {
+                document.getElementById('next-question').classList.remove('hidden');
+                document.getElementById('next-question').addEventListener('click', nextQuestion);
+            } else {
+                setTimeout(() => {
+                    showGameResult();
+                }, 1500);
+            }
+        }
+        
+        function nextQuestion() {
+            currentQuestion++;
+            loadQuestion();
+        }
+        
+        function showGameResult() {
+            document.getElementById('game-container').classList.add('hidden');
+            document.getElementById('game-result').classList.remove('hidden');
+            document.getElementById('final-score').textContent = score;
+            
+            const resultMessage = document.getElementById('result-message');
+            if (score === 5) {
+                resultMessage.innerHTML = `
+                    <div class="bg-green-100 p-4 rounded-lg">
+                        <p class="text-green-700 font-bold">Sempurna! 🎉</p>
+                        <p class="text-green-600">Kamu menguasai materi teks iklan dengan sangat baik!</p>
+                    </div>
+                `;
+                createConfetti();
+            } else if (score >= 3) {
+                resultMessage.innerHTML = `
+                    <div class="bg-blue-100 p-4 rounded-lg">
+                        <p class="text-blue-700 font-bold">Bagus! 👍</p>
+                        <p class="text-blue-600">Kamu sudah memahami dasar-dasar teks iklan dengan baik.</p>
+                    </div>
+                `;
+            } else {
+                resultMessage.innerHTML = `
+                    <div class="bg-yellow-100 p-4 rounded-lg">
+                        <p class="text-yellow-700 font-bold">Terus Semangat! 💪</p>
+                        <p class="text-yellow-600">Kamu bisa mengulang materi untuk pemahaman yang lebih baik.</p>
+                    </div>
+                `;
+            }
+        }
+        
+        function restartGame() {
+            initGame();
+        }
+        
+        function restartModule() {
+            currentQuestion = 0;
+            score = 0;
+            showSlide(1);
+        }
+        
+        function createConfetti() {
+            const container = document.getElementById('game-result');
+            const colors = ['#ff0000', '#00ff00', '#0000ff', '#ffff00', '#ff00ff', '#00ffff'];
+            
+            for (let i = 0; i < 50; i++) {
+                const confetti = document.createElement('div');
+                confetti.className = 'confetti';
+                confetti.style.left = Math.random() * 100 + '%';
+                confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+                confetti.style.width = Math.random() * 10 + 5 + 'px';
+                confetti.style.height = Math.random() * 10 + 5 + 'px';
+                confetti.style.animationDuration = Math.random() * 2 + 2 + 's';
+                confetti.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(confetti);
+            }
+        }
+        
+        // Initialize
+        document.addEventListener('DOMContentLoaded', function() {
+            showSlide(1);
+        });
+    </script>
+<script>(function(){function c(){var b=a.contentDocument||a.contentWindow.document;if(b){var d=b.createElement('script');d.innerHTML="window.__CF$cv$params={r:'94f2eaa200e1fcdf',t:'MTc0OTgzMTY0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);";b.getElementsByTagName('head')[0].appendChild(d)}}if(document.body){var a=document.createElement('iframe');a.height=1;a.width=1;a.style.position='absolute';a.style.top=0;a.style.left=0;a.style.border='none';a.style.visibility='hidden';document.body.appendChild(a);if('loading'!==document.readyState)c();else if(window.addEventListener)document.addEventListener('DOMContentLoaded',c);else{var e=document.onreadystatechange||function(){};document.onreadystatechange=function(b){e(b);'loading'!==document.readyState&&(document.onreadystatechange=e,c())}}}})();</script></body>
+</html>
